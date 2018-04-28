@@ -1,31 +1,27 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="well">
+    <%= link_to "New", new_municipio_path, class: "btn btn-primary" %>
+  </div>
 
-<h1>Municipios</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Codigo</th>
-      <th>Nombre</th>
-      <th>Estado</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @municipios.each do |municipio| %>
+  <table class="table table-bordered table-striped">
+    <thead>
       <tr>
-        <td><%= municipio.codigo %></td>
-        <td><%= municipio.nombre %></td>
-        <td><%= municipio.estado %></td>
-        <td><%= link_to 'Show', municipio %></td>
-        <td><%= link_to 'Edit', edit_municipio_path(municipio) %></td>
-        <td><%= link_to 'Destroy', municipio, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Codigo</th>
+        <th>Nombre</th>
+        <th>Estado</th>
+        <th colspan="2">Acciones</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Municipio', new_municipio_path %>
+    </thead>
+    <tbody>
+      <% @municipios.each do |municipio| %>
+        <tr>
+          <td><%= municipio.codigo %></td>
+          <td><%= municipio.nombre %></td>
+          <td><%= hestado(municipio.estado) %></td>
+          <td><%= link_to "Editar", edit_municipio_path(municipio), class: "btn btn-default" %></td>
+          <td><%= link_to 'Eliminar', municipio, method: :delete, data: { confirm: 'Estás seguro?' }, class: "btn btn-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

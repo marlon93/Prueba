@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2018_04_28_133706) do
 
-  create_table "municipios", id: false, force: :cascade do |t|
+  create_table "municipios", force: :cascade do |t|
     t.integer "codigo"
     t.string "nombre"
     t.boolean "estado", default: true
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2018_04_28_133706) do
     t.index ["region_id"], name: "index_municipios_regiones_on_region_id"
   end
 
-  create_table "regiones", id: false, force: :cascade do |t|
+  create_table "regiones", force: :cascade do |t|
     t.integer "codigo"
     t.string "nombre"
     t.datetime "created_at", null: false

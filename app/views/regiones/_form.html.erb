@@ -1,14 +1,35 @@
+<div class="containter">
+  <%= simple_form_for(@region) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-<%= simple_form_for(@region) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+      <%= f.input :codigo %>
+    </div>
 
-  <div class="form-inputs">
-    <%= f.input :codigo %>
-    <%= f.input :nombre %>
-  </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+      <%= f.input :nombre %>
+    </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <ul style="list-style-type:none;">
+        <strong></strong>
+        <li><label> Municipios</label></li>
+        <% Municipio.where("estado = ?", true).each do |municipio| %>
+
+          <%= check_box_tag "region[municipio_ids][]", municipio.id, @region.municipios.include?(municipio) %>
+          <%=h municipio.nombre %>
+
+        <% end %>
+      </ul>
+    </div>
+
+
+    <div class="col-md-12">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        <%= f.button :submit, 'Guardar', class:'btn btn-success' %>
+      </div>
+    </div>
+  <% end %>
+</div>
